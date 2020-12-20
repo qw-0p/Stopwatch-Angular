@@ -102,14 +102,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   wait() {
-    this.wait$.pipe(
-      buffer(this.wait$),
-      debounceTime(300),
-      tap(x => console.log(x)),
-      filter(x => x.length > 1),
-      map(() => ({...this.state, count: false}))
-    ),
-
     this.wait$.next(true);
   }
 
