@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy{
         }),
         switchMap((x: State) => {
           return x.count ?
-             interval(10).pipe(
+             interval(100).pipe(
                 tap(ev => {
                   this.setState({ current: x.current + ev + 1 })
                   })
