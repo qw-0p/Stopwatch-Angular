@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy{
         }),
         switchMap((x: State) => {
           return x.count ?
-             interval(100).pipe(
+             interval(10).pipe(
                 tap(ev => {
                   this.setState({ current: x.current + ev + 1 })
                   })
@@ -84,21 +84,11 @@ export class AppComponent implements OnInit, OnDestroy{
     this.output = this.convertTimer(this.state.current)
   }
   convertTimer(current: number) {
-    let obj = {
-      h: Math.floor(current/10/60/60).toString(),
-      m: Math.floor(current/10/60).toString(),
-      s: Math.floor(current/10 % 60).toString()
+    return {
+      h: Math.floor(current/10/60/60).toString().padStart(2, '0'),
+      m: Math.floor(current/10/60).toString().padStart(2, '0'),
+      s: Math.floor(current/10 % 60).toString().padStart(2, '0')
     }
-    if(obj.h.length === 1) {
-      obj.h = '0' + obj.h
-    }
-    if(obj.m.length === 1) {
-     obj.m = '0' + obj.m
-    }
-    if(obj.s.length === 1) {
-      obj.s = '0' + obj.s
-    }
-    return obj 
   }
 
   wait() {
